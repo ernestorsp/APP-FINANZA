@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#0f274c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="FINANZA">
+  <meta name="application-name" content="FINANZA">
+  <link rel="icon" type="image/svg+xml" sizes="512x512" href="finanza-logo.svg">
+  <link rel="shortcut icon" href="finanza-logo.svg">
+  <link rel="apple-touch-icon" href="finanza-logo.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>FINANZA</title>
+  <style>
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#f4f6fa}
+    iframe{display:block;width:100%;height:100%;border:0;background:#f4f6fa;opacity:0;transition:opacity .28s ease}
+    iframe.ready{opacity:1}
+    .splash{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:radial-gradient(circle at 50% 30%,#173f72 0,#0b1f3f 42%,#030b1c 100%);transition:opacity .35s ease,visibility .35s ease}
+    .splash.hide{opacity:0;visibility:hidden}
+    .splashBox{text-align:center;color:#fff;font-family:Arial,sans-serif;padding:24px}
+    .splashLogo{width:146px;height:146px;object-fit:cover;border-radius:34px;box-shadow:0 22px 52px #0008}
+    .splash h1{margin:22px 0 7px;font-size:29px;letter-spacing:3px}
+    .splash p{margin:0 0 20px;color:#b9c9df;font-size:14px;letter-spacing:.4px}
+    .spinner{width:36px;height:36px;margin:auto;border:4px solid #ffffff3d;border-top-color:#22d3ee;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .fallback{position:fixed;inset:auto 16px 16px;z-index:2;text-align:center;font:14px Arial,sans-serif}
+    .fallback a{color:#173f5f}
+  </style>
+</head>
+<body>
+  <div id="splash" class="splash" role="status" aria-live="polite">
+    <div class="splashBox">
+      <img class="splashLogo" src="finanza-logo.svg" alt="Logo de FINANZA">
+      <h1>FINANZA</h1>
+      <p>Tu dinero, tu futuro</p>
+      <div class="spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <iframe
+    id="finanzaFrame"
+    src="about:blank"
+    title="FINANZA"
+    allow="camera; clipboard-write; payment"
+  ></iframe>
+
+  <script>
+    const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxa4IWpu8w9C9Cx1S-mZVOyQqseDKsB2mJP5RQh1y_Zf5LSZRsNc4E3ZunCyeBI8viz/exec';
+    const appFrame=document.getElementById('finanzaFrame');
+    const splash=document.getElementById('splash');
+
+    appFrame.src=SCRIPT_URL+(window.location.search||'');
+
+    function showApp(){
+      appFrame.classList.add('ready');
+      splash.classList.add('hide');
+    }
+
+    appFrame.addEventListener('load',()=>setTimeout(showApp,650));
+
+    window.addEventListener('message',event=>{
+      const fromGoogle=event.origin==='https://script.google.com'||event.origin.endsWith('.googleusercontent.com');
+      if(fromGoogle&&event.data&&event.data.type==='finanza-ready')showApp();
+    });
+
+    setTimeout(showApp,20000);
+  </script>
+
+  <noscript class="fallback">
+    <a href="https://script.google.com/macros/s/AKfycbxa4IWpu8w9C9Cx1S-mZVOyQqseDKsB2mJP5RQh1y_Zf5LSZRsNc4E3ZunCyeBI8viz/exec">Abrir FINANZA</a>
+  </noscript>
+</body>
+</html>
