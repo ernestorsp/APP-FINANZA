@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">FINANZA</title>
+  <desc id="desc">Gráfico financiero ascendente con símbolo de dólar</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102b55"/>
+      <stop offset="1" stop-color="#030d22"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34e6ad"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="492" height="492" rx="105" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <path d="M118 285V224a18 18 0 0 1 18-18h28a18 18 0 0 1 18 18v61z" fill="url(#blue)"/>
+    <path d="M201 285V176a18 18 0 0 1 18-18h28a18 18 0 0 1 18 18v109z" fill="#14b8c4"/>
+    <path d="M284 285V129a18 18 0 0 1 18-18h28a18 18 0 0 1 18 18v156z" fill="url(#green)"/>
+    <path d="M100 296l64-62 49 42 116-126 47 1-8 47-25-24-127 139-51-44-43 43z" fill="#fff"/>
+    <path d="M98 166a174 174 0 0 1 249-78" fill="none" stroke="url(#blue)" stroke-width="18" stroke-linecap="round"/>
+    <path d="M382 205a174 174 0 0 1-234 181" fill="none" stroke="url(#blue)" stroke-width="18" stroke-linecap="round"/>
+    <text x="339" y="314" font-family="Arial, sans-serif" font-weight="900" font-size="96" fill="#fff">$</text>
+  </g>
+  <text x="256" y="423" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="900" letter-spacing="5" fill="#fff">FINANZ<tspan fill="#22d3ee">A</tspan></text>
+  <text x="256" y="456" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="4" fill="#a9bad2">TU DINERO, TU FUTURO</text>
+</svg>
