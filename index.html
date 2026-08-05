@@ -14,18 +14,20 @@
   <link rel="manifest" href="manifest.webmanifest">
   <title>FINANZA</title>
   <style>
-    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#f4f6fa}
-    iframe{display:block;width:100%;height:100%;border:0;background:#f4f6fa;opacity:0;transition:opacity .28s ease}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#f4f6fa;touch-action:manipulation;overscroll-behavior:none}
+    body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    iframe{position:fixed;inset:0;display:block;width:100%;height:100dvh;border:0;background:#f4f6fa;opacity:0;transition:opacity .28s ease}
     iframe.ready{opacity:1}
-    .splash{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:radial-gradient(circle at 50% 30%,#173f72 0,#0b1f3f 42%,#030b1c 100%);transition:opacity .35s ease,visibility .35s ease}
+    .splash{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:radial-gradient(circle at 50% 30%,#173f72 0,#0b1f3f 42%,#030b1c 100%);transition:opacity .35s ease,visibility .35s ease;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
     .splash.hide{opacity:0;visibility:hidden}
     .splashBox{text-align:center;color:#fff;font-family:Arial,sans-serif;padding:24px}
-    .splashLogo{width:146px;height:146px;object-fit:cover;border-radius:34px;box-shadow:0 22px 52px #0008}
-    .splash h1{margin:22px 0 7px;font-size:29px;letter-spacing:3px}
+    .splashLogo{width:min(34vw,146px);height:min(34vw,146px);object-fit:cover;border-radius:28px;box-shadow:0 22px 52px #0008}
+    .splash h1{margin:20px 0 7px;font-size:clamp(24px,7vw,29px);letter-spacing:3px}
     .splash p{margin:0 0 20px;color:#b9c9df;font-size:14px;letter-spacing:.4px}
     .spinner{width:36px;height:36px;margin:auto;border:4px solid #ffffff3d;border-top-color:#22d3ee;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .fallback{position:fixed;inset:auto 16px 16px;z-index:2;text-align:center;font:14px Arial,sans-serif}
+    .fallback{position:fixed;inset:auto 16px calc(16px + env(safe-area-inset-bottom));z-index:2;text-align:center;font:14px Arial,sans-serif}
     .fallback a{color:#173f5f}
   </style>
 </head>
@@ -50,6 +52,9 @@
     const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxa4IWpu8w9C9Cx1S-mZVOyQqseDKsB2mJP5RQh1y_Zf5LSZRsNc4E3ZunCyeBI8viz/exec';
     const appFrame=document.getElementById('finanzaFrame');
     const splash=document.getElementById('splash');
+
+    document.addEventListener('gesturestart',event=>event.preventDefault(),{passive:false});
+    document.addEventListener('dblclick',event=>event.preventDefault(),{passive:false});
 
     appFrame.src=SCRIPT_URL+(window.location.search||'');
 
